@@ -5,7 +5,7 @@ Created on Thu Jun 18 14:36:30 2020
 @author: JTR
 """
 #%% Ruta y librerias
-my_folder = r'C:\Users\LENOVO\Desktop\pokemon'
+my_folder = r'C:\Users\JTR\Desktop\pokemon'
 
 import pandas as pd
 import numpy as np
@@ -74,6 +74,51 @@ print(len(aux4))
 Observations
 1. There is a problem in the length of the first generation: Moltres, Zapdos and Articuno
 2. There is a problem with Slowking in the 2nd
+This will be considered in the code for web scrapping
 """
 
+#%% For a single pokemon
+
+def f (url):
+    page = requests.get(url)
+    bs = BeautifulSoup(page.content,features="lxml")
+    html = str(bs)
+    
+    #We can get to this exploring the web page
+    l = html.split('<a href="/wiki/Type" title="Type"><span style="color:#000;">Types</span></a>')
+    
+    end = (l[1]).split('Abilities')[0]
+    
+    aux = re.findall('<small>([^<]+)?</small>',end)
+    aux = [i for i in aux if i!='']
+    print(len(aux))
+    print(aux)
+    tipos = end.split('<small>')[:len(aux)]
+    aux = [re.findall('<b>([^<]+)?</b>',i) for i in tipos]
+    print(aux)
+    
+(f('http://bulbapedia.bulbagarden.net/wiki/Corsola_(Pokémon)'))
+f('https://bulbapedia.bulbagarden.net/wiki/Dugtrio_(Pok%C3%A9mon)')
+#%% For only one pkmn 
+
+def f (url):
+    page = requests.get(url)
+    bs = BeautifulSoup(page.content,features="lxml")
+    html = str(bs)
+    
+    #We can get to this exploring the web page
+    l = html.split('<a href="/wiki/Type" title="Type"><span style="color:#000;">Type</span></a>')
+    
+    end = (l[1]).split('Abilities')[0]
+    
+    aux = re.findall('<small>([^<]+)?</small>',end)
+    aux = [i for i in aux if i!='']
+    print(len(aux))
+    print(aux)
+    tipos = end.split('<small>')[:len(aux)]
+    aux = [re.findall('<b>([^<]+)?</b>',i) for i in tipos]
+    print(aux)
+
+
+f('https://bulbapedia.bulbagarden.net/wiki/Bulbasaur_(Pok%C3%A9mon)')
 
