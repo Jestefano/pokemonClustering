@@ -8,7 +8,8 @@ The motivation behind this clusterization is the fact that I've been interested 
 This is a basic approach, based on the statistics of the pokemons, how can we cluster them so that we select the best among them? In this we have to take into consideration that there are pokemon that are banned, this might be a cluster. And there might be some clusters that are good in certain attribute compared to others. So this is what we expect.
 
 ## Key questions to answer
-
+- Is there a natural clusterization of pokemons?
+- If there is, what are the main characteristics of each cluster?
 
 ## Project plan
 In order to achieve the objective I divide the project in four main parts
@@ -27,3 +28,6 @@ There are some extra things that we can consider.
 - Abilities
 - Types
 - Synergies between pokemon
+
+## Resources:
+- [A trick for applying One hot encoder](https://stackoverflow.com/questions/58101126/using-scikit-learn-onehotencoder-with-a-pandas-dataframe)
